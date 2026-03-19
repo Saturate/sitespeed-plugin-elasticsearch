@@ -19,7 +19,8 @@
     "test": "vitest run --exclude test/e2e.test.ts",
     "test:e2e": "vitest run test/e2e.test.ts",
     "test:watch": "vitest --exclude test/e2e.test.ts",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "sitespeed.io",
@@ -29,6 +30,14 @@
     "lighthouse"
   ],
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Saturate/sitespeed-plugin-elasticsearch.git"
+  },
+  "files": [
+    "dist",
+    "sitespeed.d.ts"
+  ],
   "dependencies": {
     "@elastic/elasticsearch": "^8.17.0",
     "@sitespeed.io/plugin": "^1.0.0",
