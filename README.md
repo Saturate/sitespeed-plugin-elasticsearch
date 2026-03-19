@@ -13,7 +13,7 @@ npm install sitespeed-plugin-elasticsearch -g
 Or install directly from GitHub:
 
 ```bash
-npm install Saturate/sitespeed-plugin-elasticsearch -g
+npm install github:Saturate/sitespeed-plugin-elasticsearch -g
 ```
 
 ## Run
