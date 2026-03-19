@@ -1,0 +1,41 @@
+{
+  "name": "sitespeed-plugin-elasticsearch",
+  "version": "0.1.0",
+  "description": "Sitespeed.io plugin that sends metrics to Elasticsearch",
+  "type": "module",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/index.d.ts",
+      "import": "./dist/index.js"
+    }
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "build": "tsc",
+    "test": "vitest run --exclude test/e2e.test.ts",
+    "test:e2e": "vitest run test/e2e.test.ts",
+    "test:watch": "vitest --exclude test/e2e.test.ts",
+    "typecheck": "tsc --noEmit"
+  },
+  "keywords": [
+    "sitespeed.io",
+    "elasticsearch",
+    "web-performance",
+    "browsertime",
+    "lighthouse"
+  ],
+  "license": "MIT",
+  "dependencies": {
+    "@elastic/elasticsearch": "^8.17.0",
+    "@sitespeed.io/plugin": "^1.0.0",
+    "@sitespeed.io/log": "^1.0.0"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.0",
+    "vitest": "^3.0.0"
+  }
+}
