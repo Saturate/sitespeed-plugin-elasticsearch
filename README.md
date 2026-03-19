@@ -10,12 +10,6 @@ You need sitespeed.io 39.0 or later.
 npm install sitespeed-plugin-elasticsearch -g
 ```
 
-Or install directly from GitHub:
-
-```bash
-npm install github:Saturate/sitespeed-plugin-elasticsearch -g
-```
-
 ## Run
 
 ```bash
