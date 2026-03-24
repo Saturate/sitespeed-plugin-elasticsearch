@@ -28,6 +28,12 @@ export function getElasticsearchOptions() {
         describe: 'Number of documents buffered before a bulk flush',
         type: 'number',
         group: 'Elasticsearch'
+      },
+      tlsInsecure: {
+        default: false,
+        describe: 'Disable TLS certificate verification',
+        type: 'boolean',
+        group: 'Elasticsearch'
       }
     }
   };

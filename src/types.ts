@@ -13,6 +13,7 @@ export interface ElasticsearchOptions {
   password?: string;
   index: string;
   bulkSize?: number;
+  tlsInsecure?: boolean;
 }
 
 export interface SitespeedOptions {

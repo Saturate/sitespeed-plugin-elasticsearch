@@ -34,6 +34,7 @@ export default class ElasticsearchPlugin extends SitespeedioPlugin {
       username: esOpts.username,
       password: esOpts.password,
       bulkSize: esOpts.bulkSize,
+      tlsInsecure: esOpts.tlsInsecure,
       log: this.log
     });
 

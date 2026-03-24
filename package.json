@@ -20,7 +20,7 @@
     "test:e2e": "vitest run test/e2e.test.ts",
     "test:watch": "vitest --exclude test/e2e.test.ts",
     "typecheck": "tsc --noEmit",
-    "prepublishOnly": "pnpm run build"
+"prepublishOnly": "pnpm run build"
   },
   "keywords": [
     "sitespeed.io",

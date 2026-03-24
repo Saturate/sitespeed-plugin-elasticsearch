@@ -12,6 +12,7 @@ interface SenderOptions {
   username?: string;
   password?: string;
   bulkSize?: number;
+  tlsInsecure?: boolean;
   log: Logger;
 }
 
@@ -26,13 +27,17 @@ export class ElasticsearchSender {
   private bulkSize: number;
   private log: Logger;
 
-  constructor({ host, apiKey, username, password, bulkSize = 200, log }: SenderOptions) {
+  constructor({ host, apiKey, username, password, bulkSize = 200, tlsInsecure, log }: SenderOptions) {
     const clientOpts: ConstructorParameters<typeof Client>[0] = { node: host };
 
     if (apiKey) {
       clientOpts.auth = { apiKey };
     } else if (username && password) {
       clientOpts.auth = { username, password };
+    }
+
+    if (tlsInsecure) {
+      clientOpts.tls = { rejectUnauthorized: false };
     }
 
     this.client = new Client(clientOpts);

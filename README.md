@@ -28,6 +28,7 @@ sitespeed.io --plugins.add sitespeed-plugin-elasticsearch \
 --elasticsearch.password   Basic auth password
 --elasticsearch.index      Index name pattern (default: "sitespeed")
 --elasticsearch.bulkSize   Documents buffered before bulk flush (default: 200)
+--elasticsearch.tlsInsecure  Disable TLS certificate verification (default: false)
 ```
 
 Use `{origin}` in the index pattern for per-type indices:
@@ -53,6 +54,28 @@ The plugin listens for `pageSummary` and `summary` messages and flattens all num
   "statistics.timings.fullyLoaded.median": 1850
 }
 ```
+
+### Document structure
+
+Each document has these metadata fields:
+
+| Field | Description |
+|-------|-------------|
+| `@timestamp` | When the test ran |
+| `origin` | Source plugin: `browsertime`, `coach`, `pagexray`, `thirdparty`, `lighthouse` |
+| `summary_type` | `pageSummary` (per-page) or `summary` (aggregated) |
+| `url` | Tested URL |
+| `group` | Domain grouping |
+
+All numeric metrics are flattened into dot-path keys. Key fields by origin:
+
+**browsertime** — `statistics.timings.firstPaint.median`, `statistics.timings.largestContentfulPaint.renderTime.median`, `statistics.timings.pageTimings.backEndTime.median`, `statistics.timings.fullyLoaded.median`, `statistics.cpu.longTasks.totalBlockingTime.median`, `statistics.pageinfo.cumulativeLayoutShift.median`
+
+**coach** — `advice.performance.score`, `advice.bestpractice.score`, `advice.privacy.score`, `advice.score`, `advice.info.domElements`, `advice.info.domDepth.avg`
+
+**pagexray** — `contentTypes.html.transferSize`, `contentTypes.javascript.transferSize`, `contentTypes.css.transferSize`, `contentTypes.image.transferSize`
+
+We recommend setting `index.mapping.total_fields.limit` to at least `5000` on your ES index, as browsertime produces a large number of flattened fields.
 
 ## Development
 
